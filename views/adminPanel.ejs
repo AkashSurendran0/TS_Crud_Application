@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    
+    
+    <div id="bodywrap">
+        <div class="row">
+        <div class="large-10 columns">
+          <div class="scroll-window-wrapper">
+          <h2>
+            Student Details
+          </h2>
+          <button class="open-modal-btn" onclick="openModal()">Add User</button>
+
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h3>Add User</h3>
+                <form action="/addUser" method="post">
+                    <input type="text" placeholder="Name" id="name" name="name" />
+                    <input type="email" placeholder="Email" id="email" name="email"/>
+                    <input type="number" placeholder="Age" id="age" name="age"/>
+                    <input type="submit"></button>
+                </form>
+                </div>
+            </div>
+            <div id="editModal" class="modal">
+                <div class="modal-content">
+                <span class="close" onclick="closeEditModal()">&times;</span>
+                <h3>Edit User</h3>
+                <form id="editUser" method="post">
+                    <input type="text" placeholder="Name" id="editName" name="name" />
+                    <input type="email" placeholder="Email" id="editEmail" name="email"/>
+                    <input type="number" placeholder="Age" id="editAge" name="age"/>
+                    <input type="submit"></button>
+                </form>
+                </div>
+            </div>
+            <div class="scroll-window">
+            <table class="table table-striped table-hover user-list fixed-header">
+                <thead>
+                    <th><div>Name</div></th>
+                    <th><div>Email</div></th>
+                    <th><div>Age</div></th>
+                    <th><div>Action</div></th>
+                </thead>
+                <tbody>
+                    <% if(users.length>0){ %>
+                        <% for(let user of users){ %>
+                            <tr>
+                                <td><%= user.name %></td>
+                                <td><%= user.email %></td>
+                                <td><%= user.age %></td>
+                                <td class="text-right">
+                                    <button class="button tiny" onclick="openEditModal('<%= user.name %>', '<%= user.email %>', '<%= user.age %>', '<%= user._id %>')">Edit</button>
+                                    <button class="button alert tiny"><a href='/deleteUser/<%= user._id %>'>Delete</a></button>			
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% }else{ %>
+                        <tr>No user exist</tr>
+                    <% } %>
+                 </tbody>
+            </table>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+        <script>
+            function openModal() {
+              document.getElementById("myModal").style.display = "block";
+            }
+        
+            function closeModal() {
+              document.getElementById("myModal").style.display = "none";
+            }
+
+            function openEditModal(name, email, age, id){
+                document.getElementById('editUser').action=`/editUser/${id}`
+                document.getElementById("editModal").style.display = "block"
+                document.getElementById('editName').value=name
+                document.getElementById('editEmail').value=email
+                document.getElementById('editAge').value=age
+            }
+
+            function closeEditModal(){
+                document.getElementById("editModal").style.display = "none"
+            }
+        
+          </script>
+        
+</body>
+</html>

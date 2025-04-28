@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.dbConnect = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
-const dbUrl = 'mongodb+srv://AkashSurendran:akash12345@dejavu-ecommerce.ca94u.mongodb.net/test?retryWrites=true&w=majority&appName=DejaVu-Ecommerce';
+const dbUrl = 'Not defined';
 const dbConnect = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         mongoose_1.default.connect(dbUrl);

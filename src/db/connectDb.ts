@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 
-const dbUrl: string='mongodb+srv://AkashSurendran:akash12345@dejavu-ecommerce.ca94u.mongodb.net/test?retryWrites=true&w=majority&appName=DejaVu-Ecommerce'
+const dbUrl: string='Not defined'
 
 export const dbConnect=async ()=>{
     try {
